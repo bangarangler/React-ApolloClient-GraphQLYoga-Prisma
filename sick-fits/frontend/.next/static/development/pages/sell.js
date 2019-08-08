@@ -107,6 +107,55 @@ function (_Component) {
       _this.setState(_defineProperty({}, name, val));
     });
 
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "uploadFile",
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+        var files, data, res, file;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log('uploading file...');
+                files = e.target.files;
+                data = new FormData();
+                data.append('file', files[0]);
+                data.append('upload_preset', 'sickfits');
+                _context.next = 7;
+                return fetch('https://api.cloudinary.com/v1_1/bangarangler/image/upload', {
+                  method: 'POST',
+                  body: data
+                });
+
+              case 7:
+                res = _context.sent;
+                _context.next = 10;
+                return res.json();
+
+              case 10:
+                file = _context.sent;
+                console.log(file);
+
+                _this.setState({
+                  image: file.secure_url,
+                  largeImage: file.eager[0].secure_url
+                });
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+
     return _this;
   }
 
@@ -120,30 +169,30 @@ function (_Component) {
         variables: this.state,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 46
+          lineNumber: 65
         },
         __self: this
-      }, function (createItem, _ref) {
-        var loading = _ref.loading,
-            error = _ref.error;
+      }, function (createItem, _ref2) {
+        var loading = _ref2.loading,
+            error = _ref2.error;
         return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_styles_Form_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
           onSubmit:
           /*#__PURE__*/
           function () {
-            var _ref2 = _asyncToGenerator(
+            var _ref3 = _asyncToGenerator(
             /*#__PURE__*/
-            _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+            _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(e) {
               var res;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
                 while (1) {
-                  switch (_context.prev = _context.next) {
+                  switch (_context2.prev = _context2.next) {
                     case 0:
                       e.preventDefault();
-                      _context.next = 3;
+                      _context2.next = 3;
                       return createItem();
 
                     case 3:
-                      res = _context.sent;
+                      res = _context2.sent;
                       next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push({
                         pathname: "/item",
                         query: {
@@ -153,26 +202,26 @@ function (_Component) {
 
                     case 5:
                     case "end":
-                      return _context.stop();
+                      return _context2.stop();
                   }
                 }
-              }, _callee, this);
+              }, _callee2, this);
             }));
 
-            return function (_x) {
-              return _ref2.apply(this, arguments);
+            return function (_x2) {
+              return _ref3.apply(this, arguments);
             };
           }(),
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 48
+            lineNumber: 67
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ErrorMessage_js__WEBPACK_IMPORTED_MODULE_7__["default"], {
           error: error,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 57
+            lineNumber: 76
           },
           __self: this
         }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("fieldset", {
@@ -180,14 +229,42 @@ function (_Component) {
           "aria-busy": loading,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 58
+            lineNumber: 77
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+          htmlFor: "file",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 79
+          },
+          __self: this
+        }, "Image", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+          type: "file",
+          id: "file",
+          name: "file",
+          placeholder: "Upload an image",
+          required: true,
+          onChange: _this2.uploadFile,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 81
+          },
+          __self: this
+        }), _this2.state.image && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+          width: "200",
+          src: _this2.state.image,
+          alt: "upload preview",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 89
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: "title",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 59
+            lineNumber: 92
           },
           __self: this
         }, "Title", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
@@ -200,14 +277,14 @@ function (_Component) {
           onChange: _this2.handleChange,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 61
+            lineNumber: 94
           },
           __self: this
         })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: "price",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 72
+            lineNumber: 105
           },
           __self: this
         }, "Price", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
@@ -220,14 +297,14 @@ function (_Component) {
           onChange: _this2.handleChange,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 74
+            lineNumber: 107
           },
           __self: this
         })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: "price",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85
+            lineNumber: 118
           },
           __self: this
         }, "Description", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("textarea", {
@@ -239,14 +316,14 @@ function (_Component) {
           onChange: _this2.handleChange,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 87
+            lineNumber: 120
           },
           __self: this
         })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
           type: "submit",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 96
+            lineNumber: 129
           },
           __self: this
         }, "Submit")));
@@ -10801,7 +10878,7 @@ module.exports = gql;
   !*** ./node_modules/graphql/error/GraphQLError.mjs ***!
   \*****************************************************/
 /*! exports provided: GraphQLError */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -10952,7 +11029,7 @@ GraphQLError.prototype = Object.create(Error.prototype, {
   !*** ./node_modules/graphql/error/formatError.mjs ***!
   \****************************************************/
 /*! exports provided: formatError */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -10997,7 +11074,7 @@ function formatError(error) {
   !*** ./node_modules/graphql/error/index.mjs ***!
   \**********************************************/
 /*! exports provided: GraphQLError, syntaxError, locatedError, printError, formatError */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11037,7 +11114,7 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/graphql/error/locatedError.mjs ***!
   \*****************************************************/
 /*! exports provided: locatedError */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11075,7 +11152,7 @@ function locatedError(originalError, nodes, path) {
   !*** ./node_modules/graphql/error/printError.mjs ***!
   \***************************************************/
 /*! exports provided: printError */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11226,7 +11303,7 @@ function lpad(len, str) {
   !*** ./node_modules/graphql/error/syntaxError.mjs ***!
   \****************************************************/
 /*! exports provided: syntaxError */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11257,7 +11334,7 @@ function syntaxError(source, position, description) {
   !*** ./node_modules/graphql/jsutils/defineToStringTag.mjs ***!
   \************************************************************/
 /*! exports provided: default */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11301,7 +11378,7 @@ function applyToStringTag(classObject) {
   !*** ./node_modules/graphql/jsutils/inspect.mjs ***!
   \**************************************************/
 /*! exports provided: default */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11356,7 +11433,7 @@ function inspect(value) {
   !*** ./node_modules/graphql/jsutils/invariant.mjs ***!
   \****************************************************/
 /*! exports provided: default */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11383,7 +11460,7 @@ function invariant(condition, message) {
   !*** ./node_modules/graphql/language/blockStringValue.mjs ***!
   \************************************************************/
 /*! exports provided: default */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11462,7 +11539,7 @@ function isBlank(str) {
   !*** ./node_modules/graphql/language/directiveLocation.mjs ***!
   \*************************************************************/
 /*! exports provided: DirectiveLocation */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11513,7 +11590,7 @@ var DirectiveLocation = Object.freeze({
   !*** ./node_modules/graphql/language/kinds.mjs ***!
   \*************************************************/
 /*! exports provided: Kind */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -11597,7 +11674,7 @@ var Kind = Object.freeze({
   !*** ./node_modules/graphql/language/lexer.mjs ***!
   \*************************************************/
 /*! exports provided: createLexer, TokenKind, getTokenDesc */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -12246,7 +12323,7 @@ function readName(source, start, line, col, prev) {
   !*** ./node_modules/graphql/language/location.mjs ***!
   \****************************************************/
 /*! exports provided: getLocation */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -12292,7 +12369,7 @@ function getLocation(source, position) {
   !*** ./node_modules/graphql/language/parser.mjs ***!
   \**************************************************/
 /*! exports provided: parse, parseValue, parseType, parseConstValue, parseTypeReference, parseNamedType */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -13821,7 +13898,7 @@ function many(lexer, openKind, parseFn, closeKind) {
   !*** ./node_modules/graphql/language/printer.mjs ***!
   \***************************************************/
 /*! exports provided: print */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -14145,7 +14222,7 @@ function printBlockString(value, isDescription) {
   !*** ./node_modules/graphql/language/source.mjs ***!
   \**************************************************/
 /*! exports provided: Source */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -14199,7 +14276,7 @@ Object(_jsutils_defineToStringTag__WEBPACK_IMPORTED_MODULE_1__["default"])(Sourc
   !*** ./node_modules/graphql/language/visitor.mjs ***!
   \***************************************************/
 /*! exports provided: QueryDocumentKeys, BREAK, visit, visitInParallel, visitWithTypeInfo, getVisitFn */
-/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
@@ -28014,7 +28091,7 @@ var Sell = function Sell(props) {
 
 /***/ }),
 
-/***/ 5:
+/***/ 4:
 /*!*****************************!*\
   !*** multi ./pages/sell.js ***!
   \*****************************/
@@ -28039,5 +28116,5 @@ module.exports = dll_18682c416555df0bf0b9;
 
 /***/ })
 
-},[[5,"static/runtime/webpack.js"]]]));;
+},[[4,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=sell.js.map
