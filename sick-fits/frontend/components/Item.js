@@ -6,6 +6,7 @@ import Title from './styles/Title';
 import ItemStyles from './styles/ItemStyles.js';
 import PriceTag from './styles/PriceTag.js';
 import formatMoney from '../lib/formatMoney.js';
+import DeleteItem from './DeleteItem.js';
 
 export default class Item extends Component {
   static propTypes = {
@@ -35,7 +36,7 @@ export default class Item extends Component {
       <a>Edit <FaPencilAlt /></a>
       </Link>
       <button>Add To Cart</button>
-      <button>Delete</button>
+      <DeleteItem id={item.id}>Delete this item</DeleteItem>
       </div>
       </ItemStyles>
     );
