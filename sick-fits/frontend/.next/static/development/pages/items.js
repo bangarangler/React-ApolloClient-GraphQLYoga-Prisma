@@ -108,20 +108,22 @@ function (_Component) {
         update: this.update,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27
+          lineNumber: 29
         },
         __self: this
       }, function (deleteItem, _ref) {
         var error = _ref.error;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
-            if (confirm('Are you sure you want to delete this item?')) {
-              deleteItem();
+            if (confirm("Are you sure you want to delete this item?")) {
+              deleteItem().catch(function (err) {
+                alert(err.message);
+              });
             }
           },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 31
+            lineNumber: 37
           },
           __self: this
         }, _this2.props.children);
@@ -37685,7 +37687,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 6:
+/***/ 5:
 /*!******************************!*\
   !*** multi ./pages/items.js ***!
   \******************************/
@@ -37710,5 +37712,5 @@ module.exports = dll_18682c416555df0bf0b9;
 
 /***/ })
 
-},[[6,"static/runtime/webpack.js"]]]));;
+},[[5,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=items.js.map
