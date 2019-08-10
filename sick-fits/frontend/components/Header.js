@@ -1,20 +1,21 @@
-import Link from 'next/link';
-import styled from 'styled-components';
-import Nav from './Nav.js';
-import Router from 'next/router';
-import NProgress from 'nprogress';
+import Link from "next/link";
+import Router from "next/router";
+import NProgress from "nprogress";
+import styled from "styled-components";
+import Nav from "./Nav.js";
+import Cart from "./Cart.js";
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
-}
+};
 
 Router.onRouteChangeComplete = () => {
   NProgress.done();
-}
+};
 
 Router.onRouteChangeError = () => {
   NProgress.done();
-}
+};
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -67,7 +68,7 @@ const Header = () => (
     <div className="sub-bar">
       <p>Search</p>
     </div>
-    <div>Cart</div>
+    <Cart />
   </StyledHeader>
 );
 
