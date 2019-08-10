@@ -3,6 +3,7 @@ import Error from "./ErrorMessage.js";
 import gql from "graphql-tag";
 import Table from "./styles/Table.js";
 import SickButton from "./styles/SickButton.js";
+import PropTypes from "prop-types";
 
 const possiblePermissions = [
   "ADMIN",
@@ -37,15 +38,15 @@ const Permissions = props => {
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
-                  {possiblePermissions.map((permission, index) => (
-                    <th key={index}>{permission}</th>
+                  {possiblePermissions.map(permission => (
+                    <th key={permission}>{permission}</th>
                   ))}
                   <th>Update</th>
                 </tr>
               </thead>
               <tbody>
                 {data.users.map(user => (
-                  <User user={user} key={user.id} />
+                  <UserPermissions user={user} key={user.id} />
                 ))}
               </tbody>
             </Table>
@@ -56,17 +57,49 @@ const Permissions = props => {
   );
 };
 
-class User extends React.Component {
+class UserPermissions extends React.Component {
+  static propTypes = {
+    user: PropTypes.shape({
+      name: PropTypes.string,
+      email: PropTypes.string,
+      id: PropTypes.string,
+      permissions: PropTypes.array
+    }).isRequired
+  };
+  state = {
+    permissions: this.props.user.permissions
+  };
+
+  handlePermissionChange = e => {
+    const checkbox = e.target;
+    // copy of current permissions
+    let updatedPermissions = [...this.state.permissions];
+    // figure out if need to add or remove permission
+    if (checkbox.checked) {
+      updatedPermissions.push(checkbox.value);
+    } else {
+      updatedPermissions = updatedPermissions.filter(
+        permission => permission !== checkbox.value
+      );
+    }
+    this.setState({ permissions: updatedPermissions });
+  };
+
   render() {
     const user = this.props.user;
     return (
       <tr>
         <td>{user.name}</td>
         <td>{user.email}</td>
-        {possiblePermissions.map((permission, index) => (
-          <td key={index}>
+        {possiblePermissions.map(permission => (
+          <td key={permission}>
             <label htmlFor={`${user.id}-permission-${permission}`}>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={this.state.permissions.includes(permission)}
+                value={permission}
+                onChange={this.handlePermissionChange}
+              />
             </label>
           </td>
         ))}
