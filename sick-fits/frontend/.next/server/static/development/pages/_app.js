@@ -110,14 +110,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
 /* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _User_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./User.js */ "./components/User.js");
-/* harmony import */ var _CartItem_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CartItem.js */ "./components/CartItem.js");
-/* harmony import */ var _lib_calcTotalPrice_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lib/calcTotalPrice.js */ "./lib/calcTotalPrice.js");
-/* harmony import */ var _lib_formatMoney_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lib/formatMoney.js */ "./lib/formatMoney.js");
-/* harmony import */ var _styles_CartStyles_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./styles/CartStyles.js */ "./components/styles/CartStyles.js");
-/* harmony import */ var _styles_Supreme_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./styles/Supreme.js */ "./components/styles/Supreme.js");
-/* harmony import */ var _styles_CloseButton_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./styles/CloseButton.js */ "./components/styles/CloseButton.js");
-/* harmony import */ var _styles_SickButton_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./styles/SickButton.js */ "./components/styles/SickButton.js");
+/* harmony import */ var react_adopt__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-adopt */ "react-adopt");
+/* harmony import */ var react_adopt__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_adopt__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _User_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./User.js */ "./components/User.js");
+/* harmony import */ var _CartItem_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CartItem.js */ "./components/CartItem.js");
+/* harmony import */ var _lib_calcTotalPrice_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lib/calcTotalPrice.js */ "./lib/calcTotalPrice.js");
+/* harmony import */ var _lib_formatMoney_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../lib/formatMoney.js */ "./lib/formatMoney.js");
+/* harmony import */ var _styles_CartStyles_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./styles/CartStyles.js */ "./components/styles/CartStyles.js");
+/* harmony import */ var _styles_Supreme_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./styles/Supreme.js */ "./components/styles/Supreme.js");
+/* harmony import */ var _styles_CloseButton_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./styles/CloseButton.js */ "./components/styles/CloseButton.js");
+/* harmony import */ var _styles_SickButton_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./styles/SickButton.js */ "./components/styles/SickButton.js");
 var _jsxFileName = "/Users/jonathanpalacio/Desktop/side-projects/Advanced/sick-fits/frontend/components/Cart.js";
 
 function _templateObject2() {
@@ -153,109 +155,168 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
+
 var LOCAL_STATE_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_2___default()(_templateObject());
 var TOGGLE_CART_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_2___default()(_templateObject2());
-
-var Cart = function Cart() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_User_js__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 27
-    },
-    __self: this
-  }, function (_ref) {
-    var me = _ref.data.me;
-    if (!me) return null;
-    console.log(me);
+var Composed = Object(react_adopt__WEBPACK_IMPORTED_MODULE_3__["adopt"])({
+  user: function user(_ref) {
+    var render = _ref.render;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_User_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 27
+      },
+      __self: this
+    }, render);
+  },
+  toggleCart: function toggleCart(_ref2) {
+    var render = _ref2.render;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Mutation"], {
       mutation: TOGGLE_CART_MUTATION,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 32
+        lineNumber: 29
       },
       __self: this
-    }, function (toggleCart) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
-        query: LOCAL_STATE_QUERY,
+    }, render);
+  },
+  localState: function localState(_ref3) {
+    var render = _ref3.render;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_1__["Query"], {
+      query: LOCAL_STATE_QUERY,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 31
+      },
+      __self: this
+    }, render);
+  }
+});
+
+var Cart = function Cart() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Composed, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: this
+  }, function (_ref4) {
+    var user = _ref4.user,
+        toggleCart = _ref4.toggleCart,
+        localState = _ref4.localState;
+    var me = user.data.me;
+    if (!me) return null;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_CartStyles_js__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      open: localState.data.cartOpen,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 41
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 42
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_CloseButton_js__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      onClick: toggleCart,
+      title: "close",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 43
+      },
+      __self: this
+    }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_Supreme_js__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 46
+      },
+      __self: this
+    }, me.name, "'s Cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 47
+      },
+      __self: this
+    }, "You Have ", me.cart.length, " Item", me.cart.length === 1 ? "" : "s", " in your cart.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 52
+      },
+      __self: this
+    }, me.cart.map(function (cartItem) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CartItem_js__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        key: cartItem.id,
+        cartItem: cartItem,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 54
         },
         __self: this
-      }, function (_ref2) {
-        var data = _ref2.data;
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_CartStyles_js__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          open: data.cartOpen,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 36
-          },
-          __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 37
-          },
-          __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_CloseButton_js__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          onClick: toggleCart,
-          title: "close",
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 38
-          },
-          __self: this
-        }, "\xD7"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_Supreme_js__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 41
-          },
-          __self: this
-        }, me.name, "'s Cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 42
-          },
-          __self: this
-        }, "You Have ", me.cart.length, " Item", me.cart.length === 1 ? "" : "s", " in your cart.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 47
-          },
-          __self: this
-        }, me.cart.map(function (cartItem) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CartItem_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            key: cartItem.id,
-            cartItem: cartItem,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 49
-            },
-            __self: this
-          });
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 52
-          },
-          __self: this
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 53
-          },
-          __self: this
-        }, Object(_lib_formatMoney_js__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_lib_calcTotalPrice_js__WEBPACK_IMPORTED_MODULE_5__["default"])(me.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_SickButton_js__WEBPACK_IMPORTED_MODULE_10__["default"], {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 54
-          },
-          __self: this
-        }, "Checkout")));
       });
-    });
+    })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 57
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 58
+      },
+      __self: this
+    }, Object(_lib_formatMoney_js__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(_lib_calcTotalPrice_js__WEBPACK_IMPORTED_MODULE_6__["default"])(me.cart))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_SickButton_js__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 59
+      },
+      __self: this
+    }, "Checkout")));
   });
-};
+}; //const Cart = () => {
+//return (
+//<User>
+//{({ data: { me } }) => {
+//if (!me) return null;
+//console.log(me);
+//return (
+//<Mutation mutation={TOGGLE_CART_MUTATION}>
+//{toggleCart => (
+//<Query query={LOCAL_STATE_QUERY}>
+//{({ data }) => (
+//<CartStyles open={data.cartOpen}>
+//<header>
+//<CloseButton onClick={toggleCart} title="close">
+//&times;
+//</CloseButton>
+//<Supreme>{me.name}'s Cart</Supreme>
+//<p>
+//You Have {me.cart.length} Item
+//{me.cart.length === 1 ? "" : "s"} in your cart.
+//</p>
+//</header>
+//<ul>
+//{me.cart.map(cartItem => (
+//<CartItem key={cartItem.id} cartItem={cartItem} />
+//))}
+//</ul>
+//<footer>
+//<p>{formatMoney(calcTotalPrice(me.cart))}</p>
+//<SickButton>Checkout</SickButton>
+//</footer>
+//</CartStyles>
+//)}
+//</Query>
+//)}
+//</Mutation>
+//);
+//}}
+//</User>
+//);
+//};
+
 
 /* harmony default export */ __webpack_exports__["default"] = (Cart);
 
@@ -368,10 +429,30 @@ var CartItemStyles = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.li
 
 var CartItem = function CartItem(_ref) {
   var cartItem = _ref.cartItem;
+  if (!cartItem.item) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CartItemStyles, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: this
+  }, "This Item has been removed"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RemoveFromCart_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    id: cartItem.id,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: this
+  }));
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CartItemStyles, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 30
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -380,39 +461,39 @@ var CartItem = function CartItem(_ref) {
     alt: cartItem.item.title,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 31
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "cart-item-details",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 32
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 33
     },
     __self: this
   }, cartItem.item.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 34
     },
     __self: this
   }, Object(_lib_formatMoney_js__WEBPACK_IMPORTED_MODULE_3__["default"])(cartItem.item.price * cartItem.quantity), " - ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 37
     },
     __self: this
   }, cartItem.quantity, " \xD7 ", Object(_lib_formatMoney_js__WEBPACK_IMPORTED_MODULE_3__["default"])(cartItem.item.price), " each"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RemoveFromCart_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
     id: cartItem.id,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 42
     },
     __self: this
   }));
@@ -1701,6 +1782,17 @@ module.exports = require("prop-types");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-adopt":
+/*!******************************!*\
+  !*** external "react-adopt" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-adopt");
 
 /***/ }),
 
