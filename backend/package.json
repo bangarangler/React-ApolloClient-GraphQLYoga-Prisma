@@ -7,16 +7,7 @@
     "dev": "nodemon -e js,graphql -x node --inspect src/index.js",
     "test": "jest",
     "deploy": "prisma deploy --env-file variables.env",
-    "builds": [
-      {
-        "src": "*.html",
-        "use": "@now/static"
-      },
-      {
-        "src": "*.js",
-        "use": "@now/node"
-      }
-    ]
+    "builds": [ "src": "next.config.js", "use": "@now/next"]
   },
   "dependencies": {
     "babel-preset-env": "^1.7.0",
